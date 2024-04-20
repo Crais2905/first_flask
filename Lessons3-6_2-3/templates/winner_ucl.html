@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% set club = clubs|max(attribute='wins_ucl') %}
+{% import 'macros.html' as macros %}
+
+{% block content %}
+
+{{ macros.club_detail(club) }}
+
+{% endblock %}

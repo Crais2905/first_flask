@@ -1,0 +1,42 @@
+body {
+    background-color: aquamarine;
+}
+
+.wrapper {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: #FFF;
+    margin: 0px 100px 0px 100px;
+    padding-bottom: 20px;
+    height: 100%;
+}
+
+.navbar {
+    margin: 20px 0px;
+    padding: 20px;
+    display: flex;
+}
+
+.container-fluid {
+    justify-content: space-between;
+}
+
+.card {
+    transition: all 0.5s ease-in 0s;
+}
+
+.card:hover {
+    background-color: aquamarine;
+}
+
+.btn-outline-success {
+    color: aquamarine;
+    border-color: aquamarine;
+}
+
+
+
+.error-items {
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px;
+}

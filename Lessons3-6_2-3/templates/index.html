@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for club in clubs %}
+<div class="container card mb-3" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">{{ club.name }}</h5>
+        <p class="card-text">Coach: {{ club.coach }}</p>
+    </div>
+    <div class="card-body">
+        <a href=" {{ url_for('club_detail', id=club.id) }}" class="btn btn-primary">Detail</a>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}
