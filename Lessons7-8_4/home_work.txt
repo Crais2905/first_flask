@@ -1,0 +1,24 @@
+# task 1
+import sqlite3
+
+with sqlite3.connect('test_db.db') as sqlite_connection:
+    cursor = sqlite_connection.cursor()
+    # cursor.execute('''CREATE TABLE Students (
+    #     id INTEGER PRIMERY KEY,
+    #     name TEXT,
+    #     class INTEGER,
+    #     city TEXT
+    # )''')
+
+
+    # cursor.execute(''' INSERT INTO Students VALUES(1, 'Sviatoslav', 10, 'Busk') ''')
+    # cursor.execute(''' INSERT INTO Students VALUES(2, 'Oleh', 11, 'Lviv') ''')
+    # cursor.execute(''' INSERT INTO Students VALUES(3, 'Taras', 10, 'Odesa') ''')
+    # cursor.execute(''' INSERT INTO Students VALUES(4, 'Artem', 9, 'Busk') ''')
+
+    # cursor.execute(''' UPDATE Students SET class = class + 1 ''')
+
+
+    cursor.execute(''' SELECT * FROM Students WHERE class = 10 ''')
+    for student in cursor.fetchall():
+        print(student)
