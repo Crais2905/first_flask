@@ -33,7 +33,14 @@ body {
     border-color: aquamarine;
 }
 
+.d-flex {
+    margin-right: 12px;
+}
 
+.reg-btn {
+    color: #FFF;
+    text-decoration: none;
+}
 
 .error-items {
     text-align: center;

@@ -25,7 +25,18 @@ class SQLite:
 
                 cursor.execute(''' INSERT INTO users VALUES(?, ?, ?, ?) ''', values)
         except:
-            return abort(403)
+            return abort(404)
+        
+    def valid_username(self, new_name):
+        try:
+            with sqlite3.connect('clubs.db') as sqlite_connection:
+                cursor = sqlite_connection.cursor()
 
-# bd = SQLite('clubs.db')
-# bd.user_len()
+                cursor.execute(''' SELECT user_name FROM users ''')
+                names = cursor.fetchall()
+                return not new_name in names
+        except:
+            return False
+
+bd = SQLite('clubs.db')
+bd.valid_username('crais')

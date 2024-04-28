@@ -41,20 +41,22 @@ def the_biggest_winner():
 
 @app.route('/register')
 def register():
-    return render_template('register.html')
+    return render_template('register.html', error=False)
 
 
 @app.route('/register_handler', methods=['POST', 'GET'])
 def reg_handler():
+    db = SQLite('clubs.db')
     username = request.form.get("username", 'error')
     password = request.form.get("password", 'error')
     email = request.form.get("email", 'error')
-    if request.method == 'POST':
-        print(username, password, email)
-        db = SQLite('clubs.db')
-        db.write_user(username, password, email)
-    return redirect(url_for('home'))
-
+    if '@' in email or db.valid_username(username):
+        if request.method == 'POST':
+            db.write_user(username, password, email)
+            return redirect(url_for('home'))
+    else:
+        error = "Неправильно введено пошту або таке ім'я вже існує" 
+        return render_template('register.html', error=error)
 
 @app.errorhandler(404)
 def error404(error):

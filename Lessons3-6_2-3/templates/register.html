@@ -3,6 +3,7 @@
 {% block content %}
 
 <div class="register container">
+
     <form action="/register_handler" method="post" autocomplete="off">
         <h1>Register</h1>
         <p>
@@ -17,6 +18,9 @@
             <label for="email">Email</label>
             <input type="text" name="email" id="email">
         </p>
+        {% if error %}
+        <p style="color: red;">{{ error }}</p>
+        {% endif %}
         <input type="submit" value="Зареєструватися" class="btn btn-primary">
     </form>
 
