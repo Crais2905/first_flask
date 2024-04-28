@@ -2,22 +2,22 @@
 
 {% block content %}
 
-<div class="register">
-    <form action="/register_handler">
+<div class="register container">
+    <form action="/register_handler" method="post" autocomplete="off">
         <h1>Register</h1>
         <p>
             <label for="username">Username</label>
-            <input type="text" name="username">
+            <input type="text" name="username" id="username">
         </p>
         <p>
             <label for="password">Password</label>
-            <input type="text" name="password">
+            <input type="password" name="password" id="password">
         </p>
         <p>
             <label for="email">Email</label>
-            <input type="text" name="email">
+            <input type="text" name="email" id="email">
         </p>
-        <input type="submit", value="Зареєструватися">
+        <input type="submit" value="Зареєструватися" class="btn btn-primary">
     </form>
 
 </div>

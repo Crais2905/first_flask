@@ -46,13 +46,13 @@ def register():
 
 @app.route('/register_handler', methods=['POST', 'GET'])
 def reg_handler():
+    username = request.form.get("username", 'error')
+    password = request.form.get("password", 'error')
+    email = request.form.get("email", 'error')
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        email = request.form['email']
-
-    db = SQLite('clubs.db')
-    db.write_user(username, password, email)
+        print(username, password, email)
+        db = SQLite('clubs.db')
+        db.write_user(username, password, email)
     return redirect(url_for('home'))
 
 
