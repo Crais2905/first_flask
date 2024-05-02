@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="form">
+    <h1 class="mb-5">Add new</h1>
+
+    <form action="/add_new_handler" class="add_sth container" method="POST">
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="title">
+            <label for="floatingInput">Title</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="content" >
+            <label for="floatingPassword">Description</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <select class="form-select mb-3" aria-label="Default select example" name="club">
+                {% for club in clubs %}
+                <option value="{{ club.id }}">{{ club.name }}</option>
+                {% endfor %}
+    
+            </select>
+            <label for="floatingPassword">Club</label>    
+        </div>
+
+        {% if error %}
+        <p style="color: red;">{{ error }}</p>
+        {% endif %}
+        <input type="submit" value="ADD" class="btn btn-primary">
+    </form>
+</div>
+
+{% endblock %}

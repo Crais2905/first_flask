@@ -18,8 +18,6 @@ class News(db.Model):
     title = db.Column(db.String(40), nullable=True)
     content = db.Column(db.String(200), nullable=True)
     team = db.Column(db.String(30), db.ForeignKey('clubs.id'))
-    date = db.Column(db.String())
-
 
 
 @app.route('/')
@@ -45,6 +43,26 @@ def club_detail(id):
 def the_biggest_winner():
     return render_template('winner_ucl.html', clubs=clubs)
 
+# add new
+
+@app.route('/news/add')
+def add_new():
+    clubs = Clubs.query.all()
+    return render_template('add_new.html', clubs=clubs)
+
+
+@app.route('/add_new_handler', methods=['POST', 'GET'])
+def add_new_hand():
+    try:
+        if request.method == 'POST':
+            new = News(title=request.form.get('title'), content=request.form.get('description'), team=request.form.get('club'))
+            db.session.add(new)
+            db.session.commit()
+            return redirect(url_for('home'))
+    except:
+        return redirect(url_for('add_new', error='error'))
+
+
 # club add 
 
 @app.route('/club/add')
@@ -52,11 +70,7 @@ def add_club():
     return render_template('add_club.html')
 
 @app.route('/add_club_handler', methods=['POST', 'GET'])
-def add_club_hand():
-    # name = request.form.get("name", 'error')
-    # coach = request.form.get("coach", 'error')
-    # wins_ucl = request.form.get("wins_ucl", 'error')
-    
+def add_club_hand():    
 
     if request.method == 'POST':
         club = Clubs(name=request.form.get('name'), coach=request.form.get('coach'), wins_ucl=request.form.get('wins_ucl'))
