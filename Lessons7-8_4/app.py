@@ -24,11 +24,16 @@ with sqlite3.connect('test_db.db') as sqlite_connection:
     # cursor.execute('''INSERT INTO orders VALUES(5, 'monitor', 'monitor decription', 4) ''')
 
 
-    cursor.execute(''' SELECT Students.id, Students.name, title, decription
-        FROM orders 
-        JOIN Students ON orders.user_id = Students.id  
-    ''')
+    # cursor.execute(''' SELECT Students.id, Students.name, title, decription
+    #     FROM orders
+    #     JOIN Students ON orders.user_id = Students.id
+    # ''')
 
+    cursor.execute('''
+        SELECT count() 
+        FROM Students
+        GROUP BY class
+    ''')
 
 
     print(cursor.fetchall())

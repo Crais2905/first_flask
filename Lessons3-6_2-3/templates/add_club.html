@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="form">
+    <h1 class="mb-5">Add club</h1>
+
+    <form action="/add_club_handler" class="add_club container" method="POST">
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="name">
+            <label for="floatingInput">Name</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="coach" >
+            <label for="floatingPassword">Coach</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="wins_ucl">
+            <label for="floatingPassword">Wins UCL</label>
+        </div>
+
+        {% if error %}
+        <p style="color: red;">{{ error }}</p>
+        {% endif %}
+        <input type="submit" value="ADD" class="btn btn-primary">
+    </form>
+</div>
+
+{% endblock %}
