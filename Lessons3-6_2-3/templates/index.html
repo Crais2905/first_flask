@@ -10,6 +10,7 @@
     </div>
     <div class="card-body">
         <a href=" {{ url_for('club_detail', id=club.id) }}" class="btn btn-primary">Detail</a>
+        <a href=" {{ url_for('club_news', club_id=club.id) }}" class="btn btn-primary">News</a>
     </div>
 </div>
 {% endfor %}

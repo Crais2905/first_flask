@@ -29,6 +29,24 @@ def posts():
     posts = Posts.query.all()
     return render_template('posts.html', posts=posts)
 
+@app.route('/post/<int:id>')
+def post_by_id(id):
+    post = Posts.query.get_or_404(id)
+    return render_template('/post_detail.html', post=post)
+
+
+@app.route('/posts/category/<int:category_id>')
+def posts_by_category(category_id):
+    posts = Posts.query.filter_by(category=category_id)
+    category = Category.query.get_or_404(category_id)
+    return render_template('post_by_category.html', posts=posts, category=category)
+
+
+@app.route('/categories')
+def categories():
+    categories = Category.query.all()
+    return render_template('categories.html', categories=categories)
+
 
 with app.app_context():
     db.create_all()

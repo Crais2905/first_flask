@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+<h1 class="mb-5">{{ club.name }}</h1>
+
+{% for new in news %}
+<div class="container mb-3 card_news">
+    <h4> {{ new.title }} </h3>
+    <p> {{ new.content }}</p>
+</div>
+
+{% endfor %}
+
+{% endblock %}

@@ -33,6 +33,7 @@ def about():
 
 @app.route('/club/<int:id>')
 def club_detail(id):
+    clubs=Clubs.query.all()
     if id > len(clubs):
         return redirect(url_for('home'))
     return render_template('club_detail.html', club=clubs[id-1])
@@ -41,7 +42,16 @@ def club_detail(id):
 
 @app.route('/biggest_winner')
 def the_biggest_winner():
+    clubs=Clubs.query.all()
     return render_template('winner_ucl.html', clubs=clubs)
+
+
+@app.route('/news/<int:club_id>')
+def club_news(club_id):
+    club = Clubs.query.get_or_404(club_id)
+    news = News.query.filter_by(id=club_id)
+    print(club)
+    return render_template('club_news.html', club=club, news=news)
 
 # add new
 
@@ -55,7 +65,7 @@ def add_new():
 def add_new_hand():
     try:
         if request.method == 'POST':
-            new = News(title=request.form.get('title'), content=request.form.get('description'), team=request.form.get('club'))
+            new = News(title=request.form.get('title'), content=request.form.get('content'), team=request.form.get('club'))
             db.session.add(new)
             db.session.commit()
             return redirect(url_for('home'))

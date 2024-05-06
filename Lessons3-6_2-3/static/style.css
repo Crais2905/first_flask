@@ -26,6 +26,7 @@ h1 {
 
 .card {
     transition: all 0.5s ease-in 0s;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12), 0 6px 20px 0 rgba(0, 0, 0, 0.1)
 }
 
 .card:hover {
@@ -36,6 +37,14 @@ h1 {
     color: aquamarine;
     border-color: aquamarine;
 }
+
+.card_news{
+    margin-bottom: 12px;
+    min-width: 150px;
+    max-width: 30%;
+    text-align: center;
+}
+
 
 .d-flex {
     margin-right: 12px;
