@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="container">
+    <h2> {{ poll.topic }}</h2>
+    {% for option in options %}
+    <p><a href="">{{ option.title }} </a>|  votes: {{option.votes }}</p> 
+    {% endfor %}
+</div>
+
+{% endblock %}
