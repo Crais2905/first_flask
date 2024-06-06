@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="container">
+    <h2>{{ category.name }}</h2>
+    {% for poll in polls %}
+    <p><a href="{{ url_for('options_list', poll_id=poll.id) }}">{{ poll.topic }}</a></p> 
+    {% endfor %}
+
+    <a href="{{ url_for('home') }}">Home</a>
+</div>
+
+{% endblock %}
