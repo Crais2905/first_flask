@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br>
+<form action="/add-poll/{{ poll_id }}/options" method="post" class="container">
+
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">Title</span>
+        <input type="text" class="form-control" name="title" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+    </div>
+
+    <input type="submit" value="Add" class="mb-5">
+    <br>
+    <a href="{{ url_for('home') }}">Home</a>
+    <h3>Options:</h3>
+    {% for option in options %}
+    <p>{{ option.title }}</p>
+    {% endfor %}
+</form>
+
+{% endblock %}

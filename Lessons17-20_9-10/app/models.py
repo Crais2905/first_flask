@@ -37,3 +37,6 @@ class Option(db.Model):
 
 class User(UserMixin, db.Model):
     id: so.MappedColumn[int] = so.mapped_column(primary_key=True)
+    username: so.Mapped[str] = so.mapped_column(sa.String(50), unique=True, index=True)
+    email: so.Mapped[str] = so.mapped_column(sa.String(100), unique=True, index=True)
+    password_hash: so.Mapped[Optional[str]] = so.mapped_column(sa.String(128), index=True)

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br>
+<form action="/add-poll" method="post" class="container">
+
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">Topic</span>
+        <input type="text" class="form-control" name="topic" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+    </div>
+
+
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">Category</span>
+
+        <select name="category" id="">
+        {% for category in categories %}
+            <option value="{{ category.id }}">{{ category.name }}</option>
+        {% endfor %}
+        </select>
+    </div>
+
+    <input type="submit" value="Send">
+</form>
+
+{% endblock %}
