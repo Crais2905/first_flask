@@ -1,0 +1,15 @@
+{% extends 'base.html'  %}
+
+
+{% block content %}
+
+{% if current_user.is_authenticated %}
+<!-- <button><a href=#">Profile</a></button> -->
+<button><a href="{{ url_for('logout')}}">Log out</a></button>
+{% endif %}
+
+{% if not current_user.is_authenticated %}
+<button><a href="{{ url_for('registration')}}">Sing up</a></button>
+<button><a href="{{ url_for('login')}}">Log in</a></button>
+{% endif %}
+{% endblock %}
