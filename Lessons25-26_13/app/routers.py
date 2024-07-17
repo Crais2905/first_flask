@@ -3,15 +3,36 @@ from flask import render_template, url_for, request, redirect, jsonify
 from flask_login import login_user, logout_user, current_user
 import sqlalchemy as sa
 import sqlalchemy.orm as os
-from .forms import LoginForm, RegistrationForm
+from .forms import LoginForm, RegistrationForm, AddCategoryForm, PostForm
 # from flask_restful import Api, Resource, reqparse
-from app.models import User
+from app.models import User, Category, Post
 import logging
 
 
 @app.route('/')
 def home():
     return render_template('home.html')
+
+
+@app.route('/category/new', methods=['GET', 'POST'])
+def new_category():
+    form = AddCategoryForm()
+    if form.validate_on_submit():
+        category = Category(name=form.name.data)
+        db.session.add(category)
+        db.session.commit()
+        return redirect(url_for('home'))
+    return render_template('new_category.html', form=form)
+
+
+
+
+
+
+
+@app.route('/profile')
+def profile():
+    return render_template('profile.html')
 
 
 @app.route('/registration', methods=['GET', 'POST'])

@@ -3,5 +3,29 @@
 
 {% block content %}
 
+{% if current_user.is_authenticated %}
+<button><a href="{{ url_for('profile')}}">Profile</a></button>
+<button><a href="{{ url_for('logout')}}">Log out</a></button>
+{% endif %}
 
+{% if not current_user.is_authenticated %}
+<button><a href="{{ url_for('registration')}}">Sing up</a></button>
+<button><a href="{{ url_for('login')}}">Log in</a></button>
+{% endif %}
+
+<h2>Tour:</h2>
+{% for tour in tours %}
+<p>
+    <a href="{{ url_for('full_tour', tour_id=tour.id) }}">
+        {{ tour }}: {{ tour.price }}$ 
+    </a>
+    |
+    {% if tour.time.strftime("%b %w") == now_time.strftime("%b %w") %}
+      {{ tour.time.strftime("%H:%M") }}
+    {% else %}
+      {{ tour.time.strftime("%b, %d") }}
+    {% endif %} 
+
+</p>
+{% endfor %}
 {% endblock %}

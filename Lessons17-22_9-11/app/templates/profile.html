@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<h2>Profile {{ current_user.username }}</h2>
+<h3>Your voted polls:</h3>
+{% for poll in polls %}
+<p>{{ poll }}</p>
+{% endfor %}
+
+{% endblock %}

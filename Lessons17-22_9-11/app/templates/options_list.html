@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="container">
+    <h2> {{ poll.topic }}</h2>
+    {% for option in options %}
+    <p>{{ option.title }} | votes: {{option.votes }} | <a href="{{ url_for('add_vote', poll_id=poll.id, option_id=option.id) }}">vote</a></p> 
+    {% endfor %}
+    {% if error %}
+    <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <a href="{{ url_for('home') }}">Home</a>
+</div>
+
+{% endblock %}

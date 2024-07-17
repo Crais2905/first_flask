@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Your tours:</h1>
+
+{% for tour in tours %}
+<p>{{ tour }}</p>
+{% endfor %}
+
+<button><a href="{{ url_for('home') }}">Home</a></button>
+
+{% endblock %}

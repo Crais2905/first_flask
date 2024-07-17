@@ -5,9 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9cb6ae8b-71cb-42af-b8ee-730b68e45945" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Lessons7-8_4/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/Lessons7-8_4/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lessons7-8_4/home_work.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Lessons7-8_4/home_work.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clubs.db" beforeDir="false" afterPath="$PROJECT_DIR$/clubs.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lessons17-20_9-10/.flaskenv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lessons17-20_9-10/app/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lessons17-20_9-10/app/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lessons17-20_9-10/app/routers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lessons17-20_9-10/app/templates/add_option.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lessons17-20_9-10/app/templates/add_poll.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lessons17-20_9-10/app/templates/base.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lessons17-20_9-10/app/templates/category_polls.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lessons17-20_9-10/app/templates/home.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lessons17-20_9-10/app/templates/options_list.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lessons17-20_9-10/config.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lessons17-20_9-10/migrations/README" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lessons17-20_9-10/migrations/alembic.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lessons17-20_9-10/migrations/env.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lessons17-20_9-10/migrations/script.py.mako" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lessons17-20_9-10/migrations/versions/e836f745c8a3_category_table.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lessons17-20_9-10/polls.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lessons17-20_9-10/polls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/practice/app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/practice/app/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/practice/app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/practice/app/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/practice/app/routers.py" beforeDir="false" afterPath="$PROJECT_DIR$/practice/app/routers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/practice/app/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/practice/app/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/practice/app/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/practice/app/templates/home.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +38,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
