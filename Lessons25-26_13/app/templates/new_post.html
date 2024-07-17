@@ -1,0 +1,37 @@
+{% extends 'base.html'  %}
+
+
+{% block content %}
+<form method="post" class="container w-50">
+    {{ form.hidden_tag() }}
+    <h2 class="mx-auto mb-5">Create post</h2>
+
+    <div class="mb-3 row">
+        {{ form.title.label(class='col-sm-2 col-form-label') }}
+        <div class="col-sm-10">
+            {{ form.title(class="form-control")}}    
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        {{ form.content.label(class='col-sm-2 col-form-label') }}
+        <div class="col-sm-10">
+            {{ form.content(class="form-control")}}    
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        {{ form.category.label(class='col-sm-2 col-form-label') }}
+        <div class="col-sm-10">
+            {{ form.category(class="form-control")}}    
+        </div>
+    </div>
+
+    
+    
+    <div class="col-12">
+        {{ form.submit(class='btn btn-primary') }}
+    </div>
+</form>
+
+{% endblock %}

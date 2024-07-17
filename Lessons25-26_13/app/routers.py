@@ -11,9 +11,10 @@ import logging
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    posts = db.session.scalars(sa.select(Post))
+    return render_template('home.html', posts=posts)
 
-
+#category/post
 @app.route('/category/new', methods=['GET', 'POST'])
 def new_category():
     form = AddCategoryForm()
@@ -26,10 +27,40 @@ def new_category():
 
 
 
+@app.route('/post/new', methods=['GET', 'POST'])
+def new_post():
+    form = PostForm()
+    form.category.choices = [(category.id, category.name) for category in (db.session.scalars(sa.select(Category)))]
+    if form.validate_on_submit():
+        post = Post(title=form.title.data, content=form.content.data, category_id=form.category.data, author=current_user)
+        db.session.add(post)
+        db.session.commit()
+        return redirect(url_for('home'))
+    return render_template('new_post.html', form=form)
 
 
+@app.route('/post/<int:post_id>/update', methods=['GET', 'POST'])
+def update_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    form = PostForm()
+    form.category.choices = [(category.id, category.name) for category in (db.session.scalars(sa.select(Category)))]
+    if form.validate_on_submit():
+        post.title = form.title.data
+        post.content = form.content.data
+        post.category_id = form.category.data
+
+        db.session.add(post)
+        db.session.commit()
+        return redirect(url_for('home'))
+    elif request.method == 'GET':
+        form.title.data =  post.title
+        form.content.data = post.content
+        form.category.data = post.category_id
+        
+    return render_template('new_post.html', form=form)
 
 
+# login/registration
 @app.route('/profile')
 def profile():
     return render_template('profile.html')
@@ -51,6 +82,7 @@ def registration():
         login_user(user)
         return redirect(url_for('home'))
     return render_template('registration.html', form=form)
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
