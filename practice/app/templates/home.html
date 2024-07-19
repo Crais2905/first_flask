@@ -13,6 +13,8 @@
 <button><a href="{{ url_for('login')}}">Log in</a></button>
 {% endif %}
 
+<button><a href="{{ url_for('new_tour')}}">Create tour</a></button>
+
 <h2>Tour:</h2>
 {% for tour in tours %}
 <p>

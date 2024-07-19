@@ -1,0 +1,15 @@
+{% extends 'base.html'  %}
+
+
+{% block content %}
+
+<button type="button" class="btn btn-outline-primary mb-5">Add new category</button>
+
+<ul class="list-group">
+    {% for category in categories %}
+    <li class="list-group-item list-group-item-info"><a href="{{ url_for('category_posts', category_id=category.id)}}" class="text-decoration-none">{{ category.name }}</a></li>
+    {% endfor %}
+  </ul>
+
+
+{% endblock %}

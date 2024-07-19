@@ -9,7 +9,9 @@
       <h5 class="card-title">{{ post.title}}</h5>
       <p class="card-text">{{ post.content}}</p>
       <a href="#" class="btn btn-primary">Detail</a>
-      <a href="{{ url_for('update_post', post_id=post.id)}}" class="btn btn-primary">Update</a>
+      {% if current_user == post.author %}
+      <a href="{{ url_for('update_post', post_id=post.id)}}" class="btn btn-primary">Edit</a>
+      {% endif %}
     </div>
 </div>
 {% endfor %}

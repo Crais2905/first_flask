@@ -1,20 +1,28 @@
-{% extends 'base.html' %}
+{% extends 'base.html'  %}
+
 
 {% block content %}
-<br>
-<form action="/login" method="post" class="container">
+<form method="post" class="container w-50">
+    {{ form.hidden_tag() }}
+    <h2 class="mx-auto">Login</h2>
 
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">Username</span>
-        <input type="text" class="form-control" name="username" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+    <div class="mb-3 row">
+        {{ form.username.label(class='col-sm-2 col-form-label') }}
+        <div class="col-sm-10">
+            {{ form.username(class="form-control")}}    
+        </div>
     </div>
-
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">Password</span>
-        <input type="password" class="form-control" name="password" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+    
+    <div class="mb-3 row">
+        {{ form.password.label(class='col-sm-2 col-form-label') }}
+        <div class="col-sm-10">
+            {{ form.password(class="form-control")}}   
+        </div>
     </div>
-
-    <input type="submit" value="Login">
+    
+    <div class="col-12">
+        {{ form.submit(class='btn btn-primary') }}
+    </div>
 </form>
 
 {% endblock %}

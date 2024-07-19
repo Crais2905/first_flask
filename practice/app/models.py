@@ -1,4 +1,4 @@
-from app import db
+from app import db, login
 from flask_login import UserMixin
 import sqlalchemy as sa
 import sqlalchemy.orm as so
@@ -44,3 +44,8 @@ class User(UserMixin, db.Model):
 
     def check_password(self, password):
         return  check_password_hash(self.password_hash, password)
+    
+
+@login.user_loader
+def user_loader(id):
+    return db.session.get(User, id)

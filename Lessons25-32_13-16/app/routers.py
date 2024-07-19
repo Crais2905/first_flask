@@ -1,5 +1,5 @@
 from app import app, db, login  # from __init__ import app
-from flask import render_template, url_for, request, redirect, jsonify
+from flask import abort, render_template, url_for, request, redirect, jsonify
 from flask_login import login_user, logout_user, current_user
 import sqlalchemy as sa
 import sqlalchemy.orm as os
@@ -15,6 +15,21 @@ def home():
     return render_template('home.html', posts=posts)
 
 #category/post
+
+@app.route('/categories')
+def categories():
+    categories = db.session.scalars(sa.select(Category))
+    return render_template('categories.html', categories=categories)
+
+
+@app.route('/category/<int:category_id>/posts')
+def category_posts(category_id):
+    posts = db.session.scalars(sa.select(Post).where(Post.category_id == category_id))
+    return render_template('home.html', posts=posts)
+
+
+
+
 @app.route('/category/new', methods=['GET', 'POST'])
 def new_category():
     form = AddCategoryForm()
@@ -42,6 +57,8 @@ def new_post():
 @app.route('/post/<int:post_id>/update', methods=['GET', 'POST'])
 def update_post(post_id):
     post = Post.query.get_or_404(post_id)
+    if post.author != current_user:
+        abort(404)
     form = PostForm()
     form.category.choices = [(category.id, category.name) for category in (db.session.scalars(sa.select(Category)))]
     if form.validate_on_submit():
@@ -63,7 +80,8 @@ def update_post(post_id):
 # login/registration
 @app.route('/profile')
 def profile():
-    return render_template('profile.html')
+    posts = db.session.scalars(current_user.user_posts.select())
+    return render_template('profile.html', posts=posts)
 
 
 @app.route('/registration', methods=['GET', 'POST'])

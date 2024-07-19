@@ -5,6 +5,7 @@ import sqlalchemy as sa
 import sqlalchemy.orm as os
 from app.models import User, Tour
 from datetime import datetime
+from .forms import TourForm, RegistrationForm, LoginForm
 
 
 @app.route('/')
@@ -14,9 +15,21 @@ def home():
     return render_template('home.html', tours=tours, now_time=time) 
 
 
-@login.user_loader
-def user_loader(id):
-    return db.session.get(User, id)
+@app.route('/tour/new', methods=['GET', 'POST'])
+def new_tour():
+    form = TourForm()
+    if form.validate_on_submit():
+        tour = Tour(
+            title=form.title.data,
+            decription=form.decription.data,
+            price=form.price.data,
+            country=form.country.data,
+            time=form.time.data
+        )
+        db.session.add(tour)
+        db.session.commit()
+        return redirect(url_for('home'))
+    return render_template('create_tour.html', form=form) 
 
 
 @app.route('/tour/<int:tour_id>')
@@ -54,35 +67,31 @@ def user_loader(id):
 def registration():
     if current_user.is_authenticated:
         return '<h2> Log out please </h2>'
-    if request.method == 'POST':
-        username = request.form.get('username')
-        email = request.form.get('email')
-        password = request.form.get('password')
-        new_user = User(username=username, email=email)
-        new_user.set_password(password)
-        user = db.session.scalar(sa.select(User).where(User.username == new_user.username))
-        if user:
-            return redirect(url_for('registration'))
-        db.session.add(new_user)
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        user = User(username=form.username.data, email=form.email.data)
+        user.set_password(form.password.data)
+        
+        db.session.add(user)
         db.session.commit()
-        login_user(new_user)
+        
+        login_user(user)
         return redirect(url_for('home'))
-    return render_template('registration.html')
+    return render_template('registration.html', form=form)
 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
         return '<h2> Log out please </h2>'
-    if request.method == 'POST':
-        username = request.form.get('username')
-        password = request.form.get('password')
-        user = db.session.scalar(sa.select(User).where(User.username == username))
-        if not user or not user.check_password(password):
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = db.session.scalar(sa.select(User).where(User.username == form.username.data))
+        if not user or not user.check_password(form.password.data):
             return redirect(url_for('login'))
         login_user(user)
         return redirect(url_for('home'))
-    return render_template('login.html')
+    return render_template('login.html', form=form)
 
 
 @app.route('/logout')
@@ -90,3 +99,8 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('home'))
+
+
+@app.route('/root')
+def root():
+    pass
